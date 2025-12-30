@@ -1,0 +1,277 @@
+\documentclass[10pt,twocolumn]{article}
+
+% --- Standard Packages (Robust) ---
+\usepackage[margin=0.75in, columnsep=0.3in, bottom=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{physics}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\usepackage{graphicx}
+\usepackage{parskip}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+% --- Graphics & Boxes ---
+\usepackage[most]{tcolorbox}
+
+% --- Typography safety for two-column boxes ---
+\emergencystretch=2em
+
+% --- Custom Colors ---
+\definecolor{techblue}{RGB}{0, 80, 180}
+\definecolor{techcyan}{RGB}{0, 180, 220}
+\definecolor{techgray}{RGB}{70, 75, 80}
+
+% --- Global tcolorbox settings ---
+\tcbset{
+  enhanced jigsaw,
+  parbox=false,
+  boxrule=0.5pt,
+  arc=2pt,
+  left=6pt,
+  right=6pt,
+  top=6pt,
+  bottom=6pt,
+  boxsep=2pt,
+  before skip=8pt,
+  after skip=8pt,
+  width=\linewidth,
+  colbacktitle=white,
+  coltitle=black,
+  fonttitle=\bfseries
+}
+
+% --- Box Definitions ---
+
+% Concept Box: Cyan style (Unbreakable)
+\newtcolorbox{conceptbox}[1][]{
+  colback=techcyan!6,
+  colframe=techcyan!60!black,
+  leftrule=3pt,
+  title={#1},
+  breakable=false
+}
+
+% Math Box: Blue style (Unbreakable)
+\newtcolorbox{mathbox}[1][]{
+  colback=techblue!4,
+  colframe=techblue!70!black,
+  leftrule=3pt,
+  title={#1},
+  breakable=false,
+  fontupper=\small\raggedright
+}
+
+% --- Macros ---
+\newcommand{\Leff}{\mathcal{L}_{\mathrm{eff}}}
+\newcommand{\Iacc}{I_{\mathrm{acc}}}
+\newcommand{\Oorgan}{\mathcal{O}}
+\newcommand{\kb}{k_{\mathrm{B}}}
+
+% --- Title Information ---
+\title{\bfseries\huge The Objectivity Organ\\
+{\Large\normalfont\color{techgray} Definition, Criteria, and Failure Modes for Classical Objectivity}}
+\author{\textbf{Michael Zot}\\ ZotBot Research Initiative\\ \small ORCID: \href{https://orcid.org/0009-0001-9194-938X}{0009-0001-9194-938X}}
+\date{December 29, 2025}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+\noindent \textbf{Abstract.}
+Classical objectivity is treated here as an operational phenomenon: stable, reproducible facts that multiple independent observers can infer without coordination and without significantly disturbing the system.
+This paper rebuilds a unifying framework by treating decoherence, information broadcasting (Quantum Darwinism), thermodynamic stabilization, and renormalization as coordinated sub-functions of a single system-level mechanism.
+We define an \emph{Objectivity Organ} as a composed mapping that takes a joint system--environment state and outputs: (i) a classical fact variable \(X\), (ii) a family of independently readable environment records \(\{\pi_k(X)\}\), and (iii) a scale-stable effective law class \(\Leff\).
+To avoid known pitfalls in mutual-information witnesses, we define the broadcasting criterion using \emph{accessible information} and an SBS-compatible structure condition.
+\end{abstract}
+
+\section{Introduction and Scope}
+Quantum theory describes microscopic systems as superposed and interfering, while macroscopic observations present stable outcomes and intersubjective agreement.
+This work addresses a narrow question: \emph{under what physical conditions do stable shared facts emerge?}
+We do not address outcome selection, subjective probability, or consciousness.
+An observer is defined operationally as an agent with access to a local environment fragment \(F\subset E\) and a finite coarse-graining \(\mathcal{G}_\ell\).
+
+The standard literature contains strong partial answers:
+\begin{itemize}
+    \item \textbf{Decoherence} suppresses observable interference \cite{Zurek2003}.
+    \item \textbf{Quantum Darwinism (QD)} links objectivity to redundant environmental records \cite{Ollivier2004}.
+    \item \textbf{Thermodynamics} constrains erasure and practical reversibility of records \cite{Landauer1961}.
+    \item \textbf{Renormalization} explains why macroscopic laws are insensitive to microscopic detail \cite{Wilson1971}.
+\end{itemize}
+
+The novelty here is operational unification: these mechanisms are sub-functions of a single composed mapping that \emph{produces} classical objectivity.
+
+\section{The Objectivity Organ: Definition}
+
+\begin{conceptbox}[Organ Definition]
+\textbf{An organ} is a composed physical mapping with identifiable sub-functions that produces a specific output class and has predictable failure modes when sub-functions are removed.
+\end{conceptbox}
+
+The Objectivity Organ is defined as a mapping on the joint system--environment state \(\rho_{SE}\):
+\begin{equation}
+\boxed{
+\Oorgan:\rho_{SE}\mapsto \Bigl(X,\ \{\pi_k(X)\}_{k=1}^N,\ \Leff\Bigr)
+}
+\end{equation}
+where \(X\) is a classical fact variable, \(\pi_k(X)\) are independently readable records stored in environment fragments \(E_k\), and \(\Leff\) is a scale-stable effective law class governing coarse variables.
+
+\section{The Four Functional Stages}
+
+We decompose the organ into four functional layers:
+\begin{equation}
+\Oorgan := \mathcal{R} \circ \mathcal{T} \circ \mathcal{D}_{\mathrm{strong}} \circ \mathcal{C}.
+\end{equation}
+
+\subsection{Stage I: Decoherence (\(\mathcal{C}\))}
+\textit{Role: Suppression of observable interference.}
+When a system \(S\) interacts with an environment \(E\), phase information responsible for interference is redistributed.
+Decoherence suppresses off-diagonal terms in a stable pointer description, rendering interference locally inaccessible and stabilizing \(\rho_S(t)\) \cite{Zurek2003}.
+
+\subsection{Stage II: Strong Broadcasting (\(\mathcal{D}_{\mathrm{strong}}\))}
+\textit{Role: Intersubjective agreement via redundant records.}
+Objectivity requires that information about \(S\) be accessible to many observers via disjoint environment fragments \(E_k\).
+To avoid false positives from discord-dominated correlations, we require a Strong-QD / SBS-compatible condition \cite{Le2019}:
+\begin{equation}
+\rho_{SE} \approx \sum_x p_x \dyad{x} \otimes \rho_{E_1}^{(x)} \otimes \dots \otimes \rho_{E_N}^{(x)},
+\end{equation}
+with fragment states \(\rho_{E_k}^{(x)}\) approximately distinguishable for different \(x\) by local measurements.
+
+\subsection{Stage III: Thermodynamic Stabilization (\(\mathcal{T}\))}
+\textit{Role: Facts persist because erasure is costly.}
+Objectivity in practice requires record stability.
+While correlating a system with a memory can be thermodynamically reversible in principle, resetting a record register is bounded by Landauer \cite{Landauer1961}.
+Here \(\mathcal{T}\) is a resource constraint on feasible recovery maps rather than a dynamical channel.
+For a fact encoded redundantly across \(m\) locally resettable records, a lower bound on full erasure under local reset and approximate conditional independence is:
+\begin{equation}
+Q_{\min}^{(\mathrm{erase})} \gtrsim m \cdot \kb T \ln 2 \cdot H(X).
+\end{equation}
+
+\subsection{Stage IV: Renormalization (\(\mathcal{R}\))}
+\textit{Role: Robust classical laws.}
+Observers describe systems through coarse-grained variables.
+Renormalization theory formalizes how effective descriptions evolve with scale \cite{Wilson1971}, explaining the milling away of microscopic detail into stable macroscopic regularities captured by \(\Leff\).
+
+\section{Success Criteria}
+
+\subsection*{Unified Objectivity Condition}
+Classical objectivity is present if and only if there exists a fact variable \(X\) for which redundancy, thermodynamic persistence, and scale stability hold simultaneously.
+In practice, \(X\) can be taken as the pointer observable that maximizes redundancy \(R_\varepsilon(X)\) under the given environment partition.
+All predicates are evaluated under finite local observer access and approximate fragment independence.
+
+\begin{mathbox}[Unified Objectivity Condition]
+\[
+\exists\, X \;:\;
+\begin{cases}
+R_\varepsilon(X) \gg 1, \\[4pt]
+Q_{\min}^{\mathrm{reset}}(X) \;\gtrsim\; m \kb T \ln 2 \cdot H(X), \\[4pt]
+d\!\left(\mathcal{G}_\ell(\Leff),\ \mathcal{G}_{\ell'}(\Leff)\right)\le\delta
+\quad \text{for } \ell<\ell'.
+\end{cases}
+\]
+Equivalently, objectivity is generated by the composed mapping
+\[
+\mathcal{O} = \mathcal{R}\circ\mathcal{T}\circ\mathcal{D}_{\mathrm{strong}}\circ\mathcal{C}.
+\]
+\end{mathbox}
+
+These conditions are jointly necessary and jointly sufficient for operational classical objectivity under finite, local observer access.
+
+\begin{mathbox}[1. Redundancy Predicate (Consensus)]
+Accessible information \(\Iacc(X:F)\) denotes the maximum classical mutual information about \(X\) extractable from fragment \(F\) by local measurements (upper bounded by the Holevo quantity).
+Define redundancy at tolerance \(\varepsilon\) by:
+\[
+R_\varepsilon(X) = \max \left\{ m \ \middle|\  \substack{\exists F_1\dots F_m \subset E \text{ disjoint} \\ \text{s.t. } \forall j:\ \Iacc(X:F_j) \ge (1-\varepsilon)H(X)} \right\}.
+\]
+Objectivity requires \(R_\varepsilon(X)\gg 1\).
+\end{mathbox}
+
+\begin{mathbox}[2. Irreversibility Predicate (Persistence)]
+If \(m\) redundant locally resettable copies exist, a Landauer-type lower bound implies:
+\[
+Q_{\min}^{\mathrm{reset}}(X)\ \gtrsim\ m \kb T \ln 2 \cdot H(X),
+\]
+under local reset and approximate conditional independence of record registers.
+\end{mathbox}
+
+\begin{mathbox}[3. Scale-Stability Predicate (Lawhood)]
+Let \(\mathcal{G}_\ell\) be coarse-graining at scale \(\ell\).
+Law stability requires:
+\[
+d\!\left(\mathcal{G}_\ell(\Leff),\ \mathcal{G}_{\ell'}(\Leff)\right)\le \delta
+\quad \text{for } \ell<\ell'.
+\]
+\end{mathbox}
+
+\section{Failure Mode Analysis (Lesions)}
+\begin{itemize}
+    \item \textbf{Discord-Dominated Correlations (Bad \(\mathcal{D}\)):} If \(\Iacc \ll I(S:E)\), apparent redundancy can be a false positive for naive QD witnesses \cite{Le2019}.
+    \item \textbf{Asymmetric Encoding:} If information is deposited in channels atypical observers do not sample, consensus fails for typical observers \cite{Chisholm2022}.
+    \item \textbf{Low Stabilization (Missing \(\mathcal{T}\)):} If record registers are not stabilized, facts are fragile and reversals are practically achievable (as seen in error-corrected quantum memory).
+\end{itemize}
+
+\section{Empirical Stress Tests and Anchors}
+This framework does not introduce new microphysics. Its credibility depends on whether each sub-function is independently evidenced.
+
+\subsection{Decoherence tested by interference loss}
+Matter-wave interferometry with large molecules exhibits quantitative suppression of interference consistent with collisional decoherence theory \cite{Hornberger2003}.
+
+\subsection{Redundancy tested in simulators}
+Photonic experiments assess Darwinism signatures and investigate how multipartite correlations in the environment affect the emergence of redundant records \cite{Ciampini2018}.
+Multi-photon quantum simulators quantify classical information proliferation and suppression of quantum correlations \cite{Chen2019}.
+
+\subsection{Landauer bound tested in erasure}
+Experiments verify approach to the Landauer bound in slow erasure cycles of a one-bit memory \cite{Berut2012}.
+
+\section{Cross-Domain Structural Tests}
+The Objectivity Pipeline is not restricted to quantum systems. It predicts consensus fails wherever any stage is absent.
+
+\begin{itemize}
+    \item \textbf{Distributed computation:} Loss of global coherence arises from latency. Replication produces redundant state. Rollback is costly once logs proliferate.
+    \item \textbf{Neuroscience:} Neural noise destroys microstate precision. Memories are redundantly encoded. Stabilization is energetically constrained.
+\end{itemize}
+
+\section{Conclusion}
+The Objectivity Organ is a functional system, not merely a synthesis.
+It takes a quantum substrate and produces classical, persistent, law-governed reality through a four-stage pipeline.
+By replacing naive mutual information with accessible information and using an SBS-compatible structure condition, the framework becomes robust against common theoretical pitfalls.
+The Objectivity Organ therefore specifies a minimal functional architecture that any physical system must satisfy in order to support stable, shared, and law-governed facts.
+
+% --- Bibliography ---
+\begin{thebibliography}{99}
+
+\bibitem{Zurek2003}
+W. H. Zurek, \emph{Decoherence, einselection, and the quantum origins of the classical}, Rev. Mod. Phys. \textbf{75}, 715 (2003).
+
+\bibitem{Ollivier2004}
+H. Ollivier, D. Poulin, W. H. Zurek, \emph{Objective Properties from Subjective Quantum States}, Phys. Rev. Lett. \textbf{93}, 220401 (2004).
+
+\bibitem{Landauer1961}
+R. Landauer, \emph{Irreversibility and Heat Generation}, IBM J. Res. Dev. \textbf{5}, 183 (1961).
+
+\bibitem{Wilson1971}
+K. G. Wilson, \emph{Renormalization Group}, Phys. Rev. B \textbf{4}, 3174 (1971).
+
+\bibitem{Hornberger2003}
+K. Hornberger et al., \emph{Collisional decoherence}, Phys. Rev. Lett. \textbf{90}, 160401 (2003).
+
+\bibitem{Berut2012}
+A. B\'erut et al., \emph{Experimental verification of Landauer's principle}, Nature \textbf{483}, 187 (2012).
+
+\bibitem{Le2019}
+T. P. Le, A. Olaya-Castro, \emph{Strong Quantum Darwinism}, Phys. Rev. Lett. \textbf{122}, 010403 (2019).
+
+\bibitem{Chisholm2022}
+D. A. Chisholm et al., \emph{Witnessing Objectivity}, Quantum Sci. Technol. \textbf{7}, 015022 (2022).
+
+\bibitem{Ciampini2018}
+M. A. Ciampini et al., \emph{Quantum Darwinism in photonic cluster states}, Phys. Rev. A \textbf{98}, 020101 (2018).
+
+\bibitem{Chen2019}
+M.-C. Chen et al., \emph{Emergence of Classical Objectivity}, arXiv:1808.07388v2 (2019).
+
+\end{thebibliography}
+
+\end{document}
